@@ -1,0 +1,31 @@
+#include <main.h>
+#use standard_io(a)
+#use standard_io(b)
+void main()
+{
+   set_tris_a(0b11110000);
+   set_tris_b(0b00010000);
+   int steps[8]={0b00000001,0b00000011,0b00000010,0b00000110,0b00000100,0b00001100,0b00001000,0b00001001};
+   while(TRUE)
+   {
+      if (input(PIN_A4)==1)
+      {        
+         for (int i=0; i<8; i++){
+            output_a(steps[i]);
+            delay_ms(5);
+         }
+      }
+      else if (input(PIN_B3)==1)
+      {  
+         for (int j=8; j>=1; j--){
+            output_a(steps[j-1]);
+            delay_ms(5);
+         }
+      } 
+      else
+      {
+         delay_ms(20);
+      }
+   }
+
+}
